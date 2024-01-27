@@ -14,6 +14,10 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 @Component
@@ -30,10 +34,14 @@ public class Runner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        Date fechaDeNacimiento = Date.from(LocalDate.parse("1997-06-06")
+                                                    .atStartOfDay()
+                                                    .atZone(ZoneId.systemDefault()).toInstant());
         Cliente cliente = new Cliente();
         cliente.setNombre("Daniela");
         cliente.setApellido("Gangotena");
         cliente.setEmail("dh@yahoo.com");
+        cliente.setFechaDeNacimiento(fechaDeNacimiento);
         repositorio.save(cliente);
 
         Producto producto = new Producto();
