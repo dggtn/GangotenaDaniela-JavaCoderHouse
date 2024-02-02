@@ -12,7 +12,6 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 @Service
 public class ServicioDeClientes {
@@ -21,7 +20,7 @@ public class ServicioDeClientes {
 
     public ClienteDTO obtenerClientePorId(Long id) {
         Optional<Cliente> opcional = clienteRepositorio.findById(id);
-        if (opcional.isPresent()){
+        if (opcional.isPresent()) {
             Cliente cliente = opcional.get();
             String nombre = cliente.getNombre();
             String apellido = cliente.getApellido();
@@ -35,7 +34,12 @@ public class ServicioDeClientes {
         return null;
 
     }
-    private Integer calcularEdad(Date fechaDeNacimiento){
+
+    public List<Cliente> obtenerClientes() {
+        return clienteRepositorio.findAll();
+    }
+
+    private Integer calcularEdad(Date fechaDeNacimiento) {
         LocalDate ahora = LocalDate.now();
         LocalDate fecha = fechaDeNacimiento.toInstant()
                 .atZone(ZoneId.systemDefault())
@@ -44,6 +48,5 @@ public class ServicioDeClientes {
         return Math.abs(period.getYears());
     }
 }
-
 
 
