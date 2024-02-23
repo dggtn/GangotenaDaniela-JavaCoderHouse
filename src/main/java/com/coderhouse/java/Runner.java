@@ -50,17 +50,24 @@ public class Runner implements ApplicationRunner {
         producto.setPrecio(BigDecimal.valueOf(1500));
         productoRepositorio.save(producto);
 
-        Venta venta = new Venta();
-        venta.setFecha(new Date());
-        venta.setCliente(cliente);
+        Producto productoDos = new Producto();
+        productoDos.setNombre("Jabón de avena");
+        productoDos.setStock(5);
+        productoDos.setPrecio(BigDecimal.valueOf(1700.25));
+        productoRepositorio.save(productoDos);
 
-        ventaRepositorio.save(venta);
+        Producto productoTres = new Producto();
+        productoTres.setNombre("Perfume floral");
+        productoTres.setStock(2);
+        productoTres.setPrecio(BigDecimal.valueOf(12000));
+        productoRepositorio.save(productoTres);
 
-        ProductoVenta productoVenta= new ProductoVenta();
-        productoVenta.setProducto(producto);
-        productoVenta.setVenta(venta);
-        productoVenta.setCantidadComprada(3);
-        productoVenta.setPrecioUnitario(BigDecimal.valueOf(3000));
-        productoVentarepositorio.save(productoVenta);
+        Producto productoCuatro = new Producto();
+        productoCuatro.setNombre("Labial rojo");
+        productoCuatro.setStock(0);
+        productoCuatro.setPrecio(BigDecimal.valueOf(1200));
+        productoRepositorio.save(productoCuatro);
+
+
     }
 }
